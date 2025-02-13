@@ -23,6 +23,7 @@
       display: inline-block;
       cursor: pointer;
       transition: transform 0.3s;
+      margin-top: 20px;
     }
     .message:hover {
       transform: scale(1.1);
@@ -33,6 +34,10 @@
       margin-top: 20px;
       font-family: 'Courier New', cursive;
       color: #CC3333;
+      font-weight: bold;
+      /* Đặt chiều cao tối thiểu để tránh hiện đột ngột */
+      min-height: 100px;
+      padding: 0 20px;
     }
     .next-button {
       display: none;
@@ -72,9 +77,8 @@
   
   <div class="message" onclick="showMessage()">Vợ bấm vào đây để xem điều bí mật nha hihi</div>
   
-  <div class="hidden-message" id="secretMessage" style="font-weight: bold; color: #006600; font-size: 1.4rem;">
-    Cảm ơn vợ yêu vì đã kiên trì, đồng hành cùng với anh trong suốt gần 4 năm qua. Anh biết bản thân anh đã nhiều lần khiến vợ phải suy nghĩ, phải buồn và khóc vì anh :((( Nhưng vợ vẫn ở đó, vẫn chờ anh, và bên cạnh anh. Anh không phải là 1 người giỏi giang, thông minh hay tài năng gì cả. Tính tình còn cục cằn, nhưng tận sâu trong lòng anh, anh thương vợ rất nhiều, yêu vợ rất nhiều. Dù thời gian tới đây mọi chuyện có như thế nào đi chăng nữa, thì vợ phải hứa với anh, sẽ vẫn phải vui vẻ, và không được buồn nha. Dù thế nào, anh hứa anh sẽ không bỏ rơi vợ, vẫn đến với vợ khi vợ cần, và luôn mong sẽ có 1 phép màu thần kỳ nào đó sẽ đến với chúng ta. Cùng cố gắng chấp nhận và vượt qua vợ nha. Chúc vợ yêu 1 ngày 14/2 tràn đầy niềm vui, hạnh phúc......
-  </div>
+  <!-- Phần thông điệp sẽ được hiển thị theo hiệu ứng typewriter -->
+  <div class="hidden-message" id="secretMessage"></div>
   
   <button class="next-button" id="nextButton" onclick="showNextScreen()">Vợ hãy click tiếp vô đây nha ^^</button>
   
@@ -84,10 +88,29 @@
   </div>
   
   <script>
-    function showMessage() {
-      document.getElementById("secretMessage").style.display = "block";
-      document.getElementById("nextButton").style.display = "block";
+    // Nội dung thông điệp đầy đủ
+    const fullMessage = "Cảm ơn vợ yêu vì đã kiên trì, đồng hành cùng với anh trong suốt gần 4 năm qua. Anh biết bản thân anh đã nhiều lần khiến vợ phải suy nghĩ, phải buồn và khóc vì anh :((( Nhưng vợ vẫn ở đó, vẫn chờ anh, và bên cạnh anh. Anh không phải là 1 người giỏi giang, thông minh hay tài năng gì cả. Tính tình còn cục cằn, nhưng tận sâu trong lòng anh, anh thương vợ rất nhiều, yêu vợ rất nhiều. Dù thời gian tới đây mọi chuyện có như thế nào đi chăng nữa, thì vợ phải hứa với anh, sẽ vẫn phải vui vẻ, và không được buồn nha. Dù thế nào, anh hứa anh sẽ không bỏ rơi vợ, vẫn đến với vợ khi vợ cần, và luôn mong sẽ có 1 phép màu thần kỳ nào đó sẽ đến với chúng ta. Cùng cố gắng chấp nhận và vượt qua vợ nha. Chúc vợ yêu 1 ngày 14/2 tràn đầy niềm vui, hạnh phúc......";
+
+    // Hàm typewriter để hiển thị chữ ra từ từ
+    function typeWriter(text, i, element) {
+      if (i < text.length) {
+        element.innerHTML += text.charAt(i);
+        setTimeout(function() {
+          typeWriter(text, i + 1, element);
+        }, 50); // Điều chỉnh tốc độ hiển thị: 50ms mỗi ký tự
+      }
     }
+
+    // Khi người dùng click vào thông báo, hiển thị thông điệp theo hiệu ứng typewriter
+    function showMessage() {
+      const secretEl = document.getElementById("secretMessage");
+      secretEl.style.display = "block";
+      document.getElementById("nextButton").style.display = "block";
+      // Xóa nội dung cũ (nếu có) và bắt đầu hiệu ứng typewriter
+      secretEl.innerHTML = "";
+      typeWriter(fullMessage, 0, secretEl);
+    }
+
     function showNextScreen() {
       window.location.href = 'next.html';
     }
@@ -101,13 +124,14 @@
           console.log("Nhạc nền đã tự động phát");
         }).catch(function(error) {
           console.log("Autoplay bị chặn: ", error);
-          // Nếu autoplay không được phép, bạn có thể hiển thị thông báo hoặc nút để người dùng kích hoạt nhạc
+          // Nếu autoplay không được phép, bạn có thể hiển thị thông báo hoặc nút để kích hoạt nhạc
         });
       }
     });
   </script>
   
   <script>
+    // Tạo hiệu ứng tim bay
     function createHeart() {
       const heart = document.createElement('div');
       heart.innerHTML = '❤️';
