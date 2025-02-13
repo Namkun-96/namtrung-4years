@@ -25,9 +25,17 @@
       transition: transform 0.3s;
       margin-top: 20px;
       color: #CCFFFF; /* Đổi màu chữ thành #CCFFFF */
+      animation: blinkBounce 1s infinite; /* Hiệu ứng nhấp nháy, nhảy nhảy */
     }
     .message:hover {
       transform: scale(1.1);
+    }
+    @keyframes blinkBounce {
+      0% { opacity: 1; transform: translateY(0); }
+      25% { opacity: 0.5; transform: translateY(-10px); }
+      50% { opacity: 1; transform: translateY(0); }
+      75% { opacity: 0.5; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
     .hidden-message {
       display: none;
@@ -92,10 +100,12 @@
     <strong>Bấm vào đây nghe nhạc cho chill nha</strong>
   </button>
   
+  <!-- Dòng tiêu đề với trái tim xuống dòng -->
   <h1 style="color: blue; font-size: 3.5rem; text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);">
-    Happy Valentine, vợ yêu của anh ❤️❤️❤️
+    Happy Valentine, vợ yêu của anh<br>❤️❤️❤️
   </h1>
   
+  <!-- Button thông báo với hiệu ứng nhấp nháy, nhảy nhảy -->
   <div class="message" onclick="showMessage()">Vợ bấm vào đây để xem điều bí mật nha hihi</div>
   
   <!-- Phần thông điệp sẽ hiển thị theo hiệu ứng typewriter -->
