@@ -58,6 +58,7 @@
       border-radius: 5px;
       cursor: pointer;
       animation: blink 1s linear infinite; /* Hiệu ứng nhấp nháy */
+      font-weight: bold; /* In đậm chữ */
     }
     @keyframes blink {
       0% { opacity: 1; }
@@ -86,8 +87,10 @@
     Trình duyệt của bạn không hỗ trợ audio.
   </audio>
   
-  <!-- Nút phát nhạc với tên mới và hiệu ứng nhấp nháy -->
-  <button class="music-button" id="musicButton" onclick="playMusic()">bấm vào đây nghe nhạc cho chill nha</button>
+  <!-- Nút phát nhạc, chỉ biến mất khi được click -->
+  <button class="music-button" id="musicButton" onclick="playMusic()">
+    <strong>Bấm vào đây nghe nhạc cho chill nha</strong>
+  </button>
   
   <h1 style="color: blue; font-size: 3.5rem; text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);">
     Happy Valentine, vợ yêu của anh ❤️❤️❤️
@@ -98,7 +101,7 @@
   <!-- Phần thông điệp sẽ hiển thị theo hiệu ứng typewriter -->
   <div class="hidden-message" id="secretMessage"></div>
   
-  <!-- Nút tiếp theo, chỉ hiển thị sau khi typewriter hoàn thành -->
+  <!-- Nút tiếp theo, chỉ hiển thị sau khi hiệu ứng typewriter hoàn thành -->
   <button class="next-button" id="nextButton" onclick="showNextScreen()">Vợ hãy click tiếp vô đây nha ^^</button>
   
   <div class="frame-container" id="eventDetails">
@@ -110,7 +113,7 @@
     // Nội dung thông điệp đầy đủ
     const fullMessage = "Cảm ơn vợ yêu vì đã kiên trì, đồng hành cùng với anh trong suốt gần 4 năm qua. Anh biết bản thân anh đã nhiều lần khiến vợ phải suy nghĩ, phải buồn và khóc vì anh :((( Nhưng vợ vẫn ở đó, vẫn chờ anh, và bên cạnh anh. Anh không phải là 1 người giỏi giang, thông minh hay tài năng gì cả. Tính tình còn cục cằn, nhưng tận sâu trong lòng anh, anh thương vợ rất nhiều, yêu vợ rất nhiều. Dù thời gian tới đây mọi chuyện có như thế nào đi chăng nữa, thì vợ phải hứa với anh, sẽ vẫn phải vui vẻ, và không được buồn nha. Dù thế nào, anh hứa anh sẽ không bỏ rơi vợ, vẫn đến với vợ khi vợ cần, và luôn mong sẽ có 1 phép màu thần kỳ nào đó sẽ đến với chúng ta. Cùng cố gắng chấp nhận và vượt qua vợ nha. Chúc vợ yêu 1 ngày 14/2 tràn đầy niềm vui, hạnh phúc......";
 
-    // Hàm typewriter với callback sau khi hoàn thành
+    // Hàm typewriter để hiển thị nội dung chữ ra từ từ
     function typeWriter(text, i, element) {
       if (i < text.length) {
         element.innerHTML += text.charAt(i);
@@ -123,7 +126,7 @@
       }
     }
 
-    // Khi người dùng click vào "message", hiển thị thông điệp với hiệu ứng typewriter
+    // Khi người dùng click vào phần "message", bắt đầu hiệu ứng typewriter
     function showMessage() {
       const secretEl = document.getElementById("secretMessage");
       secretEl.style.display = "block";
@@ -135,6 +138,7 @@
       window.location.href = 'next.html';
     }
 
+    // Hàm phát nhạc và ẩn nút phát nhạc sau khi được click
     function playMusic() {
       var audio = document.getElementById("backgroundMusic");
       audio.play().then(() => {
@@ -142,19 +146,8 @@
       }).catch(error => {
         console.log("Lỗi khi phát nhạc:", error);
       });
-      // Ẩn nút phát nhạc sau khi được click
       document.getElementById("musicButton").style.display = "none";
     }
-
-    // Tự động click nút phát nhạc khi trang load (delay 1 giây)
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        var musicBtn = document.getElementById("musicButton");
-        if(musicBtn) {
-          musicBtn.click();
-        }
-      }, 1000);
-    });
   </script>
   
   <script>
