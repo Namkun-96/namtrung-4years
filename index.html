@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Happy Valentine ❤️</title>
   <style>
     body {
@@ -10,7 +10,7 @@
       text-align: center;
       font-family: 'Arial', sans-serif;
       overflow: hidden;
-      color: #FFCCFF;
+      color: #FF0000;
     }
     h1 {
       font-size: 3rem;
@@ -32,7 +32,8 @@
       font-size: 1.2rem;
       margin-top: 20px;
       font-family: 'Courier New', cursive;
-      color: #CC3333;
+      color: #006600;
+      font-weight: bold;
     }
     .next-button {
       display: none;
@@ -57,79 +58,36 @@
       margin: 10px;
       display: inline-block;
     }
-    .music-button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background: #FFCCFF;
-      color: #FF0000;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
   </style>
 </head>
 <body>
-  <!-- Audio element không autoplay, phát khi người dùng click -->
-  <audio id="backgroundMusic" loop>
-    <source src="https://namtrung-4years.vercel.app/sweet-love-229786.mp3" type="audio/mp3">
-    Your browser does not support the audio element.
+  <!-- Audio element cố gắng tự động chạy khi trang load -->
+  <audio id="backgroundMusic" autoplay loop>
+    <source src="https://namtrung-4years.vercel.app/sweet-love-229786.mp3" type="audio/mp3" />
+    Trình duyệt của bạn không hỗ trợ audio.
   </audio>
-  
+
   <h1 style="color: blue; font-size: 3.5rem; text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);">
     Happy Valentine, vợ yêu của anh ❤️❤️❤️
   </h1>
-  
+
   <div class="message" onclick="showMessage()">Vợ bấm vào đây để xem điều bí mật nha hihi</div>
-  
-  <div class="hidden-message" id="secretMessage" style="font-weight: bold; color: #006600; font-size: 1.4rem;">
-    Cảm ơn vợ yêu vì đã kiên trì, đồng hành cùng với anh trong suốt gần 4 năm qua. Anh biết bản thân anh đã nhiều lần khiến vợ phải suy nghĩ, phải buồn và khóc vì anh :((( Nhưng vợ vẫn ở đó, vẫn chờ anh, và bên cạnh anh. Anh không phải là 1 người giỏi giang, thông minh hay tài năng gì cả. Tính tình còn cục cằn, nhưng tận sâu trong lòng anh, anh thương vợ rất nhiều, yêu vợ rất nhiều. Dù thời gian tới đây mọi chuyện có như thế nào đi chăng nữa, thì vợ phải hứa với anh, sẽ vẫn phải vui vẻ, và không được buồn nha. Dù thế nào, anh hứa anh sẽ không bỏ rơi vợ, vẫn đến với vợ khi vợ cần, và luôn mong sẽ có 1 phép màu thần kỳ nào đó sẽ đến với chúng ta. Cùng cố gắng chấp nhận và vượt qua vợ nha. Chúc vợ yêu 1 ngày 14/2 tràn đầy niềm vui, hạnh phúc......
-  </div>
-  
+
+  <!-- Phần hiển thị thông điệp sẽ được "typewriter" -->
+  <div class="hidden-message" id="secretMessage"></div>
+
   <button class="next-button" id="nextButton" onclick="showNextScreen()">Vợ hãy click tiếp vô đây nha ^^</button>
-  
-  <!-- Nút phát nhạc nền -->
-  <button class="music-button" id="musicButton" onclick="playMusic()">Phát nhạc nền</button>
-  
+
   <div class="frame-container" id="eventDetails">
     <div class="frame">🍽️ Bữa tối ngọt ngào tại Gogi House Văn Quán vào lúc 19h tối mai</div>
     <div class="frame">🎬 Sau đó chúng ta sẽ cùng thưởng thức Bộ phim CAPTAIN AMERICA vào lúc 21h10 tại rạp Lotte Hà Đông</div>
   </div>
-  
+
   <script>
-    function showMessage() {
-      document.getElementById("secretMessage").style.display = "block";
-      document.getElementById("nextButton").style.display = "block";
-    }
-    function showNextScreen() {
-      window.location.href = 'next.html';
-    }
-    function playMusic() {
-      var audio = document.getElementById("backgroundMusic");
-      audio.play();
-      // Sau khi phát nhạc, ẩn nút phát nhạc
-      document.getElementById("musicButton").style.display = "none";
-    }
-  </script>
-  
-  <script>
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.innerHTML = '❤️';
-      heart.style.position = 'fixed';
-      heart.style.left = Math.random() * window.innerWidth + 'px';
-      heart.style.top = '-20px';
-      heart.style.fontSize = Math.random() * 20 + 20 + 'px';
-      heart.style.opacity = Math.random() * 0.5 + 0.5;
-      heart.style.animation = 'fall 4s linear infinite';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 4000);
-    }
-    setInterval(createHeart, 300);
-    document.head.insertAdjacentHTML('beforeend', `<style>
-      @keyframes fall {
-        to { transform: translateY(100vh); }
-      }
-    </style>`);
-  </script>
-</body>
-</html>
+    // Nội dung thông điệp đầy đủ
+    const fullMessage = "Cảm ơn vợ yêu vì đã kiên trì, đồng hành cùng với anh trong suốt gần 4 năm qua. Anh biết bản thân anh đã nhiều lần khiến vợ phải suy nghĩ, phải buồn và khóc vì anh :((( Nhưng vợ vẫn ở đó, vẫn chờ anh, và bên cạnh anh. Anh không phải là 1 người giỏi giang, thông minh hay tài năng gì cả. Tính tình còn cục cằn, nhưng tận sâu trong lòng anh, anh thương vợ rất nhiều, yêu vợ rất nhiều. Dù thời gian tới đây mọi chuyện có như thế nào đi chăng nữa, thì vợ phải hứa với anh, sẽ vẫn phải vui vẻ, và không được buồn nha. Dù thế nào, anh hứa anh sẽ không bỏ rơi vợ, vẫn đến với vợ khi vợ cần, và luôn mong sẽ có 1 phép màu thần kỳ nào đó sẽ đến với chúng ta. Cùng cố gắng chấp nhận và vượt qua vợ nha. Chúc vợ yêu 1 ngày 14/2 tràn đầy niềm vui, hạnh phúc......";
+
+    function typeWriter(text, i, element) {
+      if (i < text.length) {
+        element.innerHTML += text.charAt(i);
+       
