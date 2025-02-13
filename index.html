@@ -6,7 +6,7 @@
     <title>Happy Valentine ❤️</title>
     <style>
         body {
-            background: url('https://raw.githubusercontent.com/Namkun-96/namtrung-4years/main/e77b583f-d20c-4601-b2c3-241c77d3ca11.jpg'); filter: brightness(30%) blur(5px); no-repeat center center/cover;
+            background: url('https://source.unsplash.com/1600x900/?love,romantic') no-repeat center center/cover; no-repeat center center/cover;
             text-align: center;
             font-family: 'Arial', sans-serif;
             overflow: hidden;
@@ -81,6 +81,26 @@
         function showNextScreen() {
     window.location.href = 'next.html';
 }
+    </script>
+<script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.style.position = 'fixed';
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.top = '-20px';
+            heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+            heart.style.opacity = Math.random() * 0.5 + 0.5;
+            heart.style.animation = 'fall 4s linear infinite';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }
+        setInterval(createHeart, 300);
+        document.head.insertAdjacentHTML('beforeend', `<style>
+            @keyframes fall {
+                to { transform: translateY(100vh); }
+            }
+        </style>`);
     </script>
 </body>
 </html>
