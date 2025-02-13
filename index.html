@@ -95,7 +95,7 @@
     Trình duyệt của bạn không hỗ trợ audio.
   </audio>
   
-  <!-- Nút phát nhạc, chỉ biến mất khi được click -->
+  <!-- Nút phát nhạc, chỉ biến mất sau khi được click -->
   <button class="music-button" id="musicButton" onclick="playMusic()">
     <strong>Bấm vào đây nghe nhạc cho chill nha</strong>
   </button>
@@ -136,8 +136,9 @@
       }
     }
 
-    // Khi người dùng click vào phần "message", bắt đầu hiệu ứng typewriter
+    // Khi người dùng click vào phần "message", ẩn nó và bắt đầu hiệu ứng typewriter
     function showMessage() {
+      document.querySelector(".message").style.display = "none";
       const secretEl = document.getElementById("secretMessage");
       secretEl.style.display = "block";
       secretEl.innerHTML = "";
