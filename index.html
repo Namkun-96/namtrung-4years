@@ -24,6 +24,7 @@
       cursor: pointer;
       transition: transform 0.3s;
       margin-top: 20px;
+      color: #CCFFFF; /* Đổi màu chữ thành #CCFFFF */
     }
     .message:hover {
       transform: scale(1.1);
@@ -56,6 +57,12 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      animation: blink 1s linear infinite; /* Hiệu ứng nhấp nháy */
+    }
+    @keyframes blink {
+      0% { opacity: 1; }
+      50% { opacity: 0.5; }
+      100% { opacity: 1; }
     }
     .frame-container {
       display: none;
@@ -79,8 +86,8 @@
     Trình duyệt của bạn không hỗ trợ audio.
   </audio>
   
-  <!-- Nút phát nhạc nền -->
-  <button class="music-button" id="musicButton" onclick="playMusic()">Phát nhạc nền</button>
+  <!-- Nút phát nhạc với tên mới và hiệu ứng nhấp nháy -->
+  <button class="music-button" id="musicButton" onclick="playMusic()">bấm vào đây nghe nhạc cho chill nha</button>
   
   <h1 style="color: blue; font-size: 3.5rem; text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);">
     Happy Valentine, vợ yêu của anh ❤️❤️❤️
